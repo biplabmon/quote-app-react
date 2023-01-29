@@ -6,7 +6,6 @@ import { faTwitter, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import Loading from "../Loading/Loading";
 
 const Card = () => {
-
     const [newQuot, setNewQuot] = useState({
         quote: '',
         author: ''
@@ -48,11 +47,15 @@ const Card = () => {
 
     return (
         <>
-            {loading && (<div className="loading_spainer">
+            {/* {loading && (<div className="loading_spainer">
                 <Loading />
                 <p>Loading...</p>
-            </div>)}
-            
+            </div>)} */}
+            <div className="loading_spainer">
+                <Loading />
+                <p>Loading...</p>
+            </div>
+
             <div className="card_main">
                 <div className="quote_text">
                     <p> {newQuot.quote} </p>
