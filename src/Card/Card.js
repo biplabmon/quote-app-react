@@ -3,6 +3,7 @@ import axios from "axios";
 import './Card.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import Loading from "../Loading/Loading";
 
 const Card = () => {
 
@@ -10,21 +11,24 @@ const Card = () => {
         quote: '',
         author: ''
     });
+    const [loading, setLoading] = useState(true);
 
-    useEffect(() =>{
+    useEffect(() => {
         fetchQuote();
-    },[]);
+    }, []);
 
     const fetchQuote = () => {
+        setLoading(true);
         axios.get('https://api.quotable.io/random')
-        .then(response =>{
-            const { content } = response.data;
-            const { author } = response.data;
-            setNewQuot({quote: content, author: author})
-        })
-        .catch((error) => {
-            console.log(error)
-        })
+            .then(response => {
+                const { content } = response.data;
+                const { author } = response.data;
+                setNewQuot({ quote: content, author: author });
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     };
 
     const newQuoteHandaler = () => {
@@ -37,13 +41,18 @@ const Card = () => {
     };
 
     const whatsappHandaler = () => {
-        const whatsappUrl = `whatsapp://send?text=${newQuot.quote}  ${'~' + '*'+newQuot.author+'*'}`;
+        const whatsappUrl = `whatsapp://send?text=${newQuot.quote}  ${'~' + '*' + newQuot.author + '*'}`;
         window.open(whatsappUrl, '_blank');
     }
 
 
     return (
         <>
+            {loading && (<div className="loading_spainer">
+                <Loading />
+                <p>Loading...</p>
+            </div>)}
+            
             <div className="card_main">
                 <div className="quote_text">
                     <p> {newQuot.quote} </p>
@@ -57,7 +66,7 @@ const Card = () => {
                         <button onClick={whatsappHandaler}> <FontAwesomeIcon icon={faWhatsapp} /> </button>
                     </div>
                     <div className="quote_button">
-                    <button onClick={newQuoteHandaler}>New Quote!</button>
+                        <button onClick={newQuoteHandaler}>New Quote!</button>
                     </div>
                 </div>
             </div>
