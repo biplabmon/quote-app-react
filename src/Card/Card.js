@@ -51,7 +51,7 @@ const Card = () => {
                 <Loading />
                 <p>Loading...</p>
             </div>)} */}
-            <Loading isLoading={loading} />
+            <Loading />
 
             <div className="card_main">
                 <div className="quote_text">
