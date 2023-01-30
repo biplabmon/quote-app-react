@@ -47,10 +47,11 @@ const Card = () => {
 
     return (
         <>
-            {loading && (<div className="loading_spainer">
+            {/* {loading && (<div className="loading_spainer">
                 <Loading />
                 <p>Loading...</p>
-            </div>)}
+            </div>)} */}
+            <Loading isLoading={loading} />
 
             <div className="card_main">
                 <div className="quote_text">

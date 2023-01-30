@@ -1,10 +1,13 @@
 import React from "react";
 import './Loading.css';
 
-const Loading = () => {
+const Loading = (props) => {
     return (
         <>
-            <div className="lds-ripple"><div></div><div></div></div>
+            {props.isLoading && (<div className="loading_spainer">
+                <div className="lds-ripple"><div></div><div></div></div>
+                <p>Loading...</p>
+            </div>)}
         </>
     )
 };
