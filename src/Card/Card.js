@@ -14,7 +14,7 @@ const Card = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // fetchQuote();
+        fetchQuote();
     }, []);
 
     const fetchQuote = () => {
