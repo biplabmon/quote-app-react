@@ -3,7 +3,8 @@ import axios from "axios";
 import './Card.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import Loading from "../Loading/Loading";
+// import Loading from "../Loading/Loading";
+import { PuffLoader } from "react-spinners";
 
 const Card = () => {
     const [newQuot, setNewQuot] = useState({
@@ -13,7 +14,7 @@ const Card = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetchQuote();
+        // fetchQuote();
     }, []);
 
     const fetchQuote = () => {
@@ -51,7 +52,16 @@ const Card = () => {
                 <Loading />
                 <p>Loading...</p>
             </div>)} */}
-            <Loading isLoading={loading} />
+            {/* <Loading isLoading={loading} /> */}
+
+            { loading && (<div className="loading_spainer">
+                    <PuffLoader
+                        color="#ffffff"
+                        cssOverride={{}}
+                        size={60}
+                    />
+                    <p>Loading...</p>
+                </div>) }
 
             <div className="card_main">
                 <div className="quote_text">
